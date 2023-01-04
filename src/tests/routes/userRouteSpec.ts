@@ -3,7 +3,7 @@ import supertest from 'supertest';
 
 const request = supertest(app);
 
-fdescribe('User route', () => {
+describe('User route', () => {
     it('Expects index endpoint to return 200 statusCode', async () => {
         const response = await request.get('/user/index');
         expect(response.statusCode).toBe(200);
