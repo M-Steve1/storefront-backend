@@ -21,7 +21,7 @@ describe('User model', () => {
     it('Should have show method', () => {
         expect(userStore.show).toBeDefined();
     });
-    xit('Create method should add a new user', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Create method should add a new user', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.create({
             first_name: "Modebe",
             last_name: "Stephen",

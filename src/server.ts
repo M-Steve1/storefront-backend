@@ -11,3 +11,5 @@ app.use('/', userRouter);
 app.listen(3000, ()=> {
     console.log(`Listen on ${address}`);
 });
+
+export default app;
