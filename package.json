@@ -9,7 +9,7 @@
     "start": "nodemon src/server.ts",
     "build": "npx tsc",
     "test_endpoint": "db-migrate --env test up && npm run build && jasmine",
-    "test": "db-migrate --env test up && npm run build && jasmine && db-migrate db:drop article_test"
+    "test": "db:create shopping_user_test db-migrate --env test up && npm run build && jasmine && db-migrate db:drop shopping_user_test"
   },
   "author": "Modebe Stephen",
   "license": "ISC",
