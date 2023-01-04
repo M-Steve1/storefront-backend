@@ -35,10 +35,10 @@ class UserStore {
     create(u) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const hashedPassword = bcrypt_1.default.hashSync(u.password + pepper, saltRounds);
-                const sql = 'INSERT INTO users(firstName, lastName, userName, password) VALUES($1, $2, $3, $4) RETURNING *';
+                const hashedPassword = bcrypt_1.default.hashSync(u.password + pepper, parseInt(saltRounds));
+                const sql = 'INSERT INTO users(first_name, last_name, user_name, password) VALUES($1, $2, $3, $4) RETURNING *';
                 const conn = yield database_1.default.connect();
-                const result = yield conn.query(sql, [u.firstName, u.lastName, u.userName, hashedPassword]);
+                const result = yield conn.query(sql, [u.first_name, u.last_name, u.user_name, hashedPassword]);
                 conn.release();
                 return result.rows[0];
             }

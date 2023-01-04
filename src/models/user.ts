@@ -5,10 +5,10 @@ import envVariables from '../config';
 const {pepper, saltRounds} = envVariables
 
 export type User = {
-    id?: string,
-    firstName: string,
-    lastName: string,
-    userName: string,
+    id?: string | number,
+    first_name: string,
+    last_name: string,
+    user_name: string,
     password: string
 };
 
@@ -27,10 +27,10 @@ export class UserStore {
 
     async create(u: User): Promise<User> {
         try {
-            const hashedPassword = bcrypt.hashSync(u.password + pepper, saltRounds);
-            const sql = 'INSERT INTO users(firstName, lastName, userName, password) VALUES($1, $2, $3, $4) RETURNING *';
+            const hashedPassword = bcrypt.hashSync(u.password + pepper, parseInt(saltRounds));
+            const sql = 'INSERT INTO users(first_name, last_name, user_name, password) VALUES($1, $2, $3, $4) RETURNING *';
             const conn = await client.connect();
-            const result = await conn.query(sql, [u.firstName, u.lastName, u.userName, hashedPassword]);
+            const result = await conn.query(sql, [u.first_name, u.last_name, u.user_name, hashedPassword]);
             conn.release();
             return result.rows[0];
         } catch (error) {
