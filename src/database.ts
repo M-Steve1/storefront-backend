@@ -25,4 +25,4 @@ if (env === "test") {
     })
 }
 
-export default client;
+export default client as Pool;
