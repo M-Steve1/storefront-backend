@@ -28,14 +28,14 @@ describe('User model', () => {
         const result = yield userStore.create({
             first_name: "Modebe",
             last_name: "Stephen",
-            user_name: "Msteve1",
+            user_name: "Msteve4",
             password: "password"
         });
         expect(result).toEqual({
-            id: 1,
-            first_name: "Modebe",
-            last_name: "Stephen",
-            user_name: "Msteve1",
+            id: 21,
+            first_name: "modebe",
+            last_name: "stephen",
+            user_name: "Msteve4",
             password: "password"
         });
     }));

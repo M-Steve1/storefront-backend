@@ -10,7 +10,7 @@ export class ProductService {
         try {
             const sql = 'SELECT * FROM products WHERE category=($1)';
             const conn = await client.connect();
-            const result = await conn.query(sql, [category]);
+            const result = await conn.query(sql, [category.toLowerCase()]);
             conn.release();
             return result.rows;
         } catch (error) {
