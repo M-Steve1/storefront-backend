@@ -38,3 +38,13 @@ export const createUser = async (req: Request, res: Response): Promise<void> => 
         throw new Error(`Could not create a user: ${error}`);
     }
 }
+
+export const authenticate = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const {user_name, password} = req.body;
+        const signedInUser = await userStore.authenticate(user_name, password);
+        res.status(200).json(signedInUser);
+    } catch (error) {
+        throw new Error(`Unable to login: ${error}`);
+    }
+}
