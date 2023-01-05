@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../../models/user");
 const userStore = new user_1.UserStore();
-fdescribe('User model', () => {
+describe('User model', () => {
     it('Should have an index method', () => {
         expect(userStore.index).toBeDefined();
     });
@@ -24,7 +24,7 @@ fdescribe('User model', () => {
     it('Should have an authenticate method', () => {
         expect(userStore.authenticate).toBeDefined();
     });
-    xit('Create method should add a new user', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Create method should add a new user', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.create({
             first_name: "Modebe",
             last_name: "Stephen",
@@ -39,7 +39,7 @@ fdescribe('User model', () => {
             password: "password"
         });
     }));
-    xit('Index method should return the list of all users', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Index method should return the list of all users', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.index();
         expect(result).toEqual([{
                 id: 1,

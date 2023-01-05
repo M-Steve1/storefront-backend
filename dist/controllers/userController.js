@@ -11,6 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticate = exports.createUser = exports.getUserById = exports.index = void 0;
 const user_1 = require("../models/user");
+const userService_1 = require("../services/userService");
 const userStore = new user_1.UserStore();
 const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -36,14 +37,20 @@ exports.getUserById = getUserById;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { first_name, last_name, user_name, password } = req.body;
-        const user = {
-            first_name: first_name,
-            last_name: last_name,
-            user_name: user_name,
-            password: password
-        };
-        const createdUser = yield userStore.create(user);
-        res.status(201).json(createdUser);
+        const isTaken = yield (0, userService_1.isUserNameTaken)(user_name);
+        if (isTaken) {
+            throw new Error("Username is taken, choose another");
+        }
+        else {
+            const user = {
+                first_name: first_name,
+                last_name: last_name,
+                user_name: user_name,
+                password: password
+            };
+            const createdUser = yield userStore.create(user);
+            res.status(201).json(createdUser);
+        }
     }
     catch (error) {
         throw new Error(`Could not create a user: ${error}`);
