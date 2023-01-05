@@ -4,6 +4,7 @@ import userRouter from './routes/userRoute';
 import productRouter from './routes/productRoute';
 import productServiceRouter from './routes/productServiceRoute';
 import orderRoute from './routes/orderRoute';
+import orderServiceRoute from './routes/orderServiceRoute';
 
 const app: express.Application = express();
 const address: string = '0.0.0.0:3000';
@@ -11,7 +12,7 @@ const address: string = '0.0.0.0:3000';
 app.use(bodyParser.json());
 app.use('/user', userRouter);
 app.use('/product', productRouter, productServiceRouter);
-app.use('/order', orderRoute);
+app.use('/order', orderRoute, orderServiceRoute);
 
 app.listen(3000, ()=> {
     console.log(`Listen on ${address}`);
