@@ -15,9 +15,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 const request = (0, supertest_1.default)(server_1.default);
-describe('Product service route', () => {
-    it('product/category/:category endpoint should return status code of 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/product/category/games');
+fdescribe('Order route', () => {
+    it('Expects /order/create endpoint to return status code 201', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.post('/order/create');
+        expect(response.statusCode).toBe(201);
+    }));
+    fit('Expects order/:id/product endpoint to return status code of 200', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.post('/order/6/product');
         expect(response.statusCode).toBe(200);
     }));
 });

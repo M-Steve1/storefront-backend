@@ -4,8 +4,8 @@ import app from "../../server";
 const request = supertest(app);
 
 describe('Product service route', () => {
-    it('Should return product/category/:category endpoint to return status code of 200', async () => {
+    it('product/category/:category endpoint should return status code of 200', async () => {
         const response = await request.get('/product/category/games')
-        expect(response.status).toBe(200);
+        expect(response.statusCode).toBe(200);
     })
 })

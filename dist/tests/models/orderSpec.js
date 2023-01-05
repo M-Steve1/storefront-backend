@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const order_1 = require("../../models/order");
 const orderStore = new order_1.OrderStore();
-fdescribe('Order model', () => {
+describe('Order model', () => {
     it('Should have a create method', () => {
         expect(orderStore.create).toBeDefined();
     });
@@ -33,8 +33,8 @@ fdescribe('Order model', () => {
             status: "completed"
         });
     }));
-    fit('Should add a product to an active order', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield orderStore.addProduct(6, "8", "4");
+    it('Should add a product to an active order', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield orderStore.addProduct(6, "8", "3");
         expect(result).toEqual({
             id: 2,
             quantity: 6,
