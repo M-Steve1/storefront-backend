@@ -8,7 +8,7 @@ describe('User route', () => {
         const response = await request.get('/user/index');
         expect(response.statusCode).toBe(200);
     });
-    it('Expects show/:id endpoint to return 200 statusCode', async () => {
+    it('Expects user/show/:id endpoint to return 200 statusCode', async () => {
         const response = await  request.get('/user/show/1');
         expect(response.statusCode).toBe(200);
     });

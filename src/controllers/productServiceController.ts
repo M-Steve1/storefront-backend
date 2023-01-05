@@ -7,7 +7,11 @@ export const productsByCategory = async (req: Request, res: Response): Promise<v
     try {
         const category = req.params.category;
         const products = await productService.productsByCategory(category);
-        res.status(200).json(products);
+        if (products.length === 0) {
+            throw new Error("category does not exist")
+        } else {
+            res.status(200).json(products);
+        }
     } catch (error) {
         throw new Error(`${error}`);
     }
