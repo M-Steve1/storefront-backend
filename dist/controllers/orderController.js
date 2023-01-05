@@ -33,7 +33,7 @@ const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const order_id = req.params.id;
         const { quantity, product_id } = req.body;
-        const addedProduct = yield orderStore.addProduct(15, "4", order_id);
+        const addedProduct = yield orderStore.addProduct(quantity, product_id, order_id);
         res.status(200).json(addedProduct);
     }
     catch (error) {

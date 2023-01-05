@@ -14,6 +14,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.OrderStore = void 0;
 const database_1 = __importDefault(require("../database"));
+const orderService_1 = require("../services/orderService");
+const orderService = new orderService_1.OrderService();
 class OrderStore {
     create(o) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -31,29 +33,21 @@ class OrderStore {
     }
     addProduct(quantity, product_id, order_id) {
         return __awaiter(this, void 0, void 0, function* () {
-            // insert this into order service
-            try {
-                const sql = 'SELECT status FROM orders WHERE id=($1)';
-                const conn = yield database_1.default.connect();
-                const result = yield conn.query(sql, [order_id]);
-                const orderStatus = result.rows[0].status;
-                conn.release();
-                if (orderStatus !== "active") {
-                    throw new Error("Order is not active");
+            const isActive = yield orderService.isOrderActive(order_id);
+            if (isActive === 'active') {
+                try {
+                    const sql = 'INSERT INTO order_products(quantity, product_id, order_id) VALUES($1, $2, $3) RETURNING *';
+                    const conn = yield database_1.default.connect();
+                    const result = yield conn.query(sql, [quantity, product_id, order_id]);
+                    conn.release();
+                    return result.rows[0];
+                }
+                catch (error) {
+                    throw new Error(`Cannot add product: ${error}`);
                 }
             }
-            catch (error) {
-                throw new Error(`Cannot find order: ${error}`);
-            }
-            try {
-                const sql = 'INSERT INTO order_products(quantity, product_id, order_id) VALUES($1, $2, $3) RETURNING *';
-                const conn = yield database_1.default.connect();
-                const result = yield conn.query(sql, [quantity, product_id, order_id]);
-                conn.release();
-                return result.rows[0];
-            }
-            catch (error) {
-                throw new Error(`Cannot add product: ${error}`);
+            else {
+                throw new Error('Order is not active');
             }
         });
     }
