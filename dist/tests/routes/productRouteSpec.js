@@ -25,7 +25,7 @@ describe('Product route', () => {
         expect(response.statusCode).toBe(200);
     }));
     it('Expects create endpoint to return 201 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/product/create');
+        const response = yield request.post('/product/create');
         expect(response.statusCode).toBe(201);
     }));
 });

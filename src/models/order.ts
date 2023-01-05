@@ -21,7 +21,7 @@ export class OrderStore {
         }
     }
 
-    async addProduct(quantity: number, product_id: string, order_id: string): Promise<{quantity: number, product_id: string, order_id: string}> {
+    async addProduct(quantity: number, product_id: string, order_id: string): Promise<{id: string | number, quantity: number, product_id: string, order_id: string}> {
         // insert this into order service
         try {
             const sql = 'SELECT status FROM orders WHERE id=($1)';
@@ -47,5 +47,5 @@ export class OrderStore {
         }
     }
 
-    
+
 }

@@ -13,7 +13,7 @@ describe('Product route', () => {
         expect(response.statusCode).toBe(200);
     });
     it('Expects create endpoint to return 201 statusCode', async () => {
-        const response = await request.get('/product/create');
+        const response = await request.post('/product/create');
         expect(response.statusCode).toBe(201);
     });
 })

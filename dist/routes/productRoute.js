@@ -8,5 +8,5 @@ const productController_1 = require("../controllers/productController");
 const productRouter = express_1.default.Router();
 productRouter.get('/index', productController_1.index);
 productRouter.get('/show/:id', productController_1.getProductById);
-productRouter.get('/create', productController_1.create);
+productRouter.post('/create', productController_1.create);
 exports.default = productRouter;
