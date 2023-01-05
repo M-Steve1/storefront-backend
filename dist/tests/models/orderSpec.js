@@ -34,11 +34,11 @@ fdescribe('Order model', () => {
         });
     }));
     fit('Should add a product to an active order', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield orderStore.addProduct(6, "8", "3");
+        const result = yield orderStore.addProduct(6, "8", "4");
         expect(result).toEqual({
-            id: 1,
-            quantity: 2,
-            product_id: "4",
+            id: 2,
+            quantity: 6,
+            product_id: "8",
             order_id: "3"
         });
     }));
