@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUser = exports.getUserById = exports.index = void 0;
+exports.authenticate = exports.createUser = exports.getUserById = exports.index = void 0;
 const user_1 = require("../models/user");
 const userStore = new user_1.UserStore();
 const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -50,3 +50,14 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.createUser = createUser;
+const authenticate = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { user_name, password } = req.body;
+        const signedInUser = yield userStore.authenticate(user_name, password);
+        res.status(200).json(signedInUser);
+    }
+    catch (error) {
+        throw new Error(`Unable to login: ${error}`);
+    }
+});
+exports.authenticate = authenticate;

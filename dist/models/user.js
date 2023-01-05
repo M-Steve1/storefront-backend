@@ -61,5 +61,31 @@ class UserStore {
             }
         });
     }
+    authenticate(user_name, password) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const sql = 'SELECT * FROM users WHERE user_name=($1)';
+                const conn = yield database_1.default.connect();
+                const result = yield conn.query(sql, [user_name]);
+                conn.release();
+                try {
+                    const user = result.rows[0];
+                    const correctPassword = yield bcrypt_1.default.compare(password + pepper, user.password);
+                    if (correctPassword) {
+                        return user;
+                    }
+                    else {
+                        throw new Error('Cannot login');
+                    }
+                }
+                catch (error) {
+                    throw new Error(`Can't login: ${error}`);
+                }
+            }
+            catch (error) {
+                throw new Error(`Something went wrong: ${error}`);
+            }
+        });
+    }
 }
 exports.UserStore = UserStore;

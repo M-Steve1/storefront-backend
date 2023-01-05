@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("../../server"));
 const supertest_1 = __importDefault(require("supertest"));
 const request = (0, supertest_1.default)(server_1.default);
-fdescribe('User route', () => {
+describe('User route', () => {
     it('Expects index endpoint to return 200 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/user/index');
         expect(response.statusCode).toBe(200);
@@ -27,5 +27,9 @@ fdescribe('User route', () => {
     it('Expects signup endpoint to return 201 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.post('/user/signup');
         expect(response.statusCode).toBe(201);
+    }));
+    it('Expects signin endpoint to return 200 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.post('/user/signin');
+        expect(response.statusCode).toBe(200);
     }));
 });

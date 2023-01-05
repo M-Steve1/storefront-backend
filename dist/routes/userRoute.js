@@ -9,4 +9,5 @@ const userRouter = express_1.default.Router();
 userRouter.get('/index', userController_1.index);
 userRouter.get('/show/:id', userController_1.getUserById);
 userRouter.post('/signup', userController_1.createUser);
+userRouter.post('/signin', userController_1.authenticate);
 exports.default = userRouter;

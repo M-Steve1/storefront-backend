@@ -50,7 +50,7 @@ export class UserStore {
         }
     }
 
-    async authenticate(user_name: string, password: string): Promise<User | null> {
+    async authenticate(user_name: string, password: string): Promise<User> {
         try {
             const sql = 'SELECT * FROM users WHERE user_name=($1)';
             const conn = await client.connect();
@@ -63,7 +63,7 @@ export class UserStore {
                 if (correctPassword) {
                     return user;
                 } else {
-                    return null;
+                    throw new Error('Cannot login');
                 }
             } catch (error) {
                 throw new Error(`Can't login: ${error}`);

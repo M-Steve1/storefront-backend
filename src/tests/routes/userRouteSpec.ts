@@ -8,14 +8,16 @@ describe('User route', () => {
         const response = await request.get('/user/index');
         expect(response.statusCode).toBe(200);
     });
-
     it('Expects show/:id endpoint to return 200 statusCode', async () => {
         const response = await  request.get('/user/show/1');
         expect(response.statusCode).toBe(200);
     });
-
     it('Expects signup endpoint to return 201 statusCode', async () => {
         const response = await request.post('/user/signup');
         expect(response.statusCode).toBe(201);
+    });
+    it('Expects signin endpoint to return 200 statusCode', async () => {
+        const response = await request.post('/user/signin');
+        expect(response.statusCode).toBe(200);
     })
 })
