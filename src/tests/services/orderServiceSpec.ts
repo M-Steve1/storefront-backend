@@ -2,7 +2,7 @@ import { OrderService } from "../../services/orderService";
 
 const orderService = new OrderService();
 
-fdescribe('Order Service', () => {
+describe('Order Service', () => {
     it('Expects the order status to be active', async () => {
         const result = await orderService.isOrderActive('1');
         expect(result).toEqual('active')
