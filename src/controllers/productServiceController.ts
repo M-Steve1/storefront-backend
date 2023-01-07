@@ -16,3 +16,12 @@ export const productsByCategory = async (req: Request, res: Response): Promise<v
         throw new Error(`${error}`);
     }
 }
+
+export const fiveMostPopularProducts = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const fiveMostPopular = await productService.fiveMostPopularProducts();
+        res.status(200).json(fiveMostPopular);
+    } catch (error) {
+        res.status(400).json(error);
+    }
+}

@@ -27,12 +27,12 @@ describe('Order model', () => {
     });
 
     it('Should add a product to an active order', async() => {
-        const result = await orderStore.addProduct(6, "8", "3");
+        const result = await orderStore.addProduct(3, "7", "1");
         expect(result).toEqual({
-            id: 2,
-            quantity: 6,
-            product_id: "8",
-            order_id: "3"
+            id: 5,
+            quantity: 3,
+            product_id: "7",
+            order_id: "1"
         })
     })
 })
