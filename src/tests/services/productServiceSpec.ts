@@ -32,4 +32,25 @@ describe('Produce service', () => {
             }
         ])
     })
+
+    it('Should return the five most popular products', async() => {
+        const result = await productService.fiveMostPopularProducts()
+        expect(result).toEqual([
+                {
+                    "name": "samsung z-fold2"
+                },
+                {
+                    "name": "PS5"
+                },
+                {
+                    "name": "t-shirt"
+                },
+                {
+                    "name": "coconut bread"
+                },
+                {
+                    "name": "iphone xr"
+                }
+            ])
+    })
 })

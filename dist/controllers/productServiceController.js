@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.productsByCategory = void 0;
+exports.fiveMostPopularProducts = exports.productsByCategory = void 0;
 const productService_1 = require("../services/productService");
 const productService = new productService_1.ProductService();
 const productsByCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -28,3 +28,13 @@ const productsByCategory = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.productsByCategory = productsByCategory;
+const fiveMostPopularProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const fiveMostPopular = yield productService.fiveMostPopularProducts();
+        res.status(200).json(fiveMostPopular);
+    }
+    catch (error) {
+        res.status(400).json(error);
+    }
+});
+exports.fiveMostPopularProducts = fiveMostPopularProducts;

@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const productService_1 = require("../../services/productService");
 const productService = new productService_1.ProductService();
-describe('Produce service', () => {
+fdescribe('Produce service', () => {
     it('Should return the products under a specific category e.g Games', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield productService.productsByCategory("Games");
         expect(result).toEqual([
@@ -38,6 +38,26 @@ describe('Produce service', () => {
                 name: "PS5",
                 price: 400000,
                 category: "games"
+            }
+        ]);
+    }));
+    it('Should return the five most popular products', () => __awaiter(void 0, void 0, void 0, function* () {
+        const result = yield productService.fiveMostPopularProducts();
+        expect(result).toEqual([
+            {
+                "name": "samsung z-fold2"
+            },
+            {
+                "name": "PS5"
+            },
+            {
+                "name": "t-shirt"
+            },
+            {
+                "name": "coconut bread"
+            },
+            {
+                "name": "iphone xr"
             }
         ]);
     }));

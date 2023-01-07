@@ -7,4 +7,5 @@ const express_1 = __importDefault(require("express"));
 const productServiceController_1 = require("../controllers/productServiceController");
 const productServiceRouter = express_1.default.Router();
 productServiceRouter.get('/category/:category', productServiceController_1.productsByCategory);
+productServiceRouter.get('/five_most_popular_products', productServiceController_1.fiveMostPopularProducts);
 exports.default = productServiceRouter;

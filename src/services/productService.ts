@@ -2,7 +2,7 @@ import client from "../database";
 import { Product } from "../models/product";
 
 export class ProductService {
-    async fiveMostPopularProducts (): Promise<string[]> {
+    async fiveMostPopularProducts (): Promise<object[]> {
         try {
             const sqlOne  = 'SELECT product_id, COUNT(product_id) AS most_popular FROM orders GROUP BY product_id ORDER BY most_popular DESC LIMIT 5';
             const sqlTWo = 'SELECT product_id, COUNT(product_id) AS most_popular FROM order_products GROUP BY product_id ORDER BY most_popular DESC LIMIT 5';
@@ -37,7 +37,7 @@ export class ProductService {
             }
             // sorting in DESC order.
             _resultOne.sort((a, b) => {return b.most_popular - a.most_popular});
-            let fiveMostPopularProducts: string[] = [];
+            let fiveMostPopularProducts: object[] = [];
             for (let i = 0; i < 5; i++) {
                 const sql = 'SELECT name FROM products WHERE id=($1)';
                 const conn = await client.connect();
