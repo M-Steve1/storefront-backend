@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const productService_1 = require("../../services/productService");
 const productService = new productService_1.ProductService();
-fdescribe('Produce service', () => {
+describe('Produce service', () => {
     it('Should return the products under a specific category e.g Games', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield productService.productsByCategory("Games");
         expect(result).toEqual([
