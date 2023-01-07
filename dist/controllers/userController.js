@@ -50,7 +50,9 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 password: password
             };
             const createdUser = yield userStore.create(user);
-            res.status(201).json(createdUser);
+            const payload = { userId: createdUser.id };
+            const token = yield userService.createToken(payload);
+            res.status(201).json({ user: createdUser, token: token });
         }
     }
     catch (error) {
@@ -62,7 +64,9 @@ const authenticate = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const { user_name, password } = req.body;
         const signedInUser = yield userStore.authenticate(user_name, password);
-        res.status(200).json(signedInUser);
+        const payload = { userId: signedInUser.id };
+        const token = yield userService.createToken(payload);
+        res.status(200).json({ user: signedInUser, token: token });
     }
     catch (error) {
         throw new Error(`Unable to login: ${error}`);

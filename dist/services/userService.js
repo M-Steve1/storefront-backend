@@ -14,6 +14,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const database_1 = __importDefault(require("../database"));
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const config_1 = __importDefault(require("../config"));
+const { jwtSecret } = config_1.default;
 class UserService {
     isUserNameTaken(user_name) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,6 +37,17 @@ class UserService {
             }
             catch (error) {
                 throw new Error(`Something went wrong ${error}`);
+            }
+        });
+    }
+    createToken(payload) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const token = jsonwebtoken_1.default.sign(payload, jwtSecret, { expiresIn: "1hr" });
+                return token;
+            }
+            catch (error) {
+                throw new Error(`Could not create token ${error}`);
             }
         });
     }
