@@ -10,9 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const userService_1 = require("../../services/userService");
-describe('User service', () => {
+const userService = new userService_1.UserService();
+fdescribe('User service', () => {
     it('Should return true if the user name is taken', () => __awaiter(void 0, void 0, void 0, function* () {
-        const isTaken = yield (0, userService_1.isUserNameTaken)("Msteve1");
+        const isTaken = yield userService.isUserNameTaken("Msteve1");
         expect(isTaken).toBe(true);
     }));
 });

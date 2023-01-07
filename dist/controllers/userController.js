@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticate = exports.createUser = exports.getUserById = exports.index = void 0;
 const user_1 = require("../models/user");
 const userService_1 = require("../services/userService");
+const userService = new userService_1.UserService();
 const userStore = new user_1.UserStore();
 const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -37,7 +38,7 @@ exports.getUserById = getUserById;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { first_name, last_name, user_name, password } = req.body;
-        const isTaken = yield (0, userService_1.isUserNameTaken)(user_name);
+        const isTaken = yield userService.isUserNameTaken(user_name);
         if (isTaken) {
             throw new Error("Username is taken, choose another");
         }
