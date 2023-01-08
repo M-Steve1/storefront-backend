@@ -1,6 +1,11 @@
-import express from "express";
-import { index, getUserById, createUser, authenticate } from "../controllers/userController";
-import { tokenAuth } from "../middleware/tokenAuth";
+import express from 'express';
+import {
+  index,
+  getUserById,
+  createUser,
+  authenticate
+} from '../controllers/userController';
+import { tokenAuth } from '../middleware/tokenAuth';
 
 const userRouter = express.Router();
 

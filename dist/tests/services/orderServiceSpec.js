@@ -36,7 +36,7 @@ fdescribe('Order Service', () => {
                 status: 'completed'
             }]);
     }));
-    it('Should check if products already exist in an order', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Should check if the product already exist in the order', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield orderService.isProductInCart("4", "2");
         expect(result).toBe(true);
     }));

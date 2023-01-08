@@ -1,6 +1,9 @@
-import express from "express";
-import { userCompletedOrders, userCurrentOrder } from "../controllers/orderServiceController";
-import { idAuth } from "../middleware/idAuth";
+import express from 'express';
+import {
+  userCompletedOrders,
+  userCurrentOrder
+} from '../controllers/orderServiceController';
+import { idAuth } from '../middleware/idAuth';
 
 const orderServiceRoute = express.Router();
 

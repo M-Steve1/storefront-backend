@@ -1,6 +1,10 @@
-import express from "express";
-import { create, getProductById, index } from "../controllers/productController";
-import { tokenAuth } from "../middleware/tokenAuth";
+import express from 'express';
+import {
+  create,
+  getProductById,
+  index
+} from '../controllers/productController';
+import { tokenAuth } from '../middleware/tokenAuth';
 
 const productRouter = express.Router();
 
