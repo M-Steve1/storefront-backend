@@ -38,4 +38,22 @@ export class OrderService {
             throw new Error(`Something went wrong ${error}`);
         }
     }
+
+    async isProductInCart(product_id: string, order_id: string): Promise<Boolean> {
+        // Checks if a product already exist in an order.
+        try {
+            const sql = 'SELECT * FROM order_products WHERE order_id=($1) AND product_id=($2)';
+            const conn = await client.connect();
+            const result = await client.query(sql, [order_id, product_id]);
+            conn.release();
+            const product = result.rows[0];
+            if (product === undefined) {
+                return false;
+            } else {
+                return true;
+            }
+        } catch (error) {
+            throw new Error(`Something went wrong ${error}`);
+        }
+    }
 }
