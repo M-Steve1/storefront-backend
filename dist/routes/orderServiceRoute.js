@@ -7,5 +7,5 @@ const express_1 = __importDefault(require("express"));
 const orderServiceController_1 = require("../controllers/orderServiceController");
 const orderServiceRoute = express_1.default.Router();
 orderServiceRoute.get('/current_order/:id', orderServiceController_1.userCurrentOrder);
-orderServiceRoute.get('/completed_orders/:id', orderServiceController_1.userCurrentOrder);
+orderServiceRoute.get('/completed_orders/:id', orderServiceController_1.userCompletedOrders);
 exports.default = orderServiceRoute;

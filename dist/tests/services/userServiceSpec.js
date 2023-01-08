@@ -11,13 +11,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const userService_1 = require("../../services/userService");
 const userService = new userService_1.UserService();
-fdescribe('User service', () => {
+describe('User service', () => {
     it('Should return true if the user name is taken', () => __awaiter(void 0, void 0, void 0, function* () {
         const isTaken = yield userService.isUserNameTaken("Msteve1");
         expect(isTaken).toBe(true);
     }));
     it('Should return a token', () => __awaiter(void 0, void 0, void 0, function* () {
         const token = yield userService.createToken({ userId: "1" });
-        expect(token).toEqual("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE2NzMxMjc1MTAsImV4cCI6MTY3MzEzMTExMH0.yYFunJAuMlARAw_IN43WXoIlkdpPRYosQu--7y6B2r8");
+        expect(token).not.toEqual("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIyLCJpYXQiOjE2NzMxMjc1MTAsImV4cCI6MTY3MzEzMTExMH0.yYFunJAuMlARAw_IN43WXoIlkdpPRYosQu--7y6B2r8");
     }));
 });

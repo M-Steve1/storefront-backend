@@ -16,7 +16,12 @@ const userCurrentOrder = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const user_id = req.params.id;
         const currentOrder = yield orderService.userCurrentOrder(user_id);
-        res.status(200).json(currentOrder);
+        if (currentOrder === undefined) {
+            res.status(404).json('You don\'t have any current order');
+        }
+        else {
+            res.status(200).json(currentOrder);
+        }
     }
     catch (error) {
         throw new Error(`Cannot get current Order: ${error}`);
@@ -27,7 +32,12 @@ const userCompletedOrders = (req, res) => __awaiter(void 0, void 0, void 0, func
     try {
         const user_id = req.params.id;
         const completedOrder = yield orderService.userCompletedOrders(user_id);
-        res.status(200).json(completedOrder);
+        if (completedOrder.length === 0) {
+            res.status(404).json('You have no completed order(s)');
+        }
+        else {
+            res.status(200).json(completedOrder);
+        }
     }
     catch (error) {
         throw new Error(`Something went wrong: ${error}`);

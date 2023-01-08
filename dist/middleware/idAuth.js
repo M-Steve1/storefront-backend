@@ -12,16 +12,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const supertest_1 = __importDefault(require("supertest"));
-const server_1 = __importDefault(require("../../server"));
-const request = (0, supertest_1.default)(server_1.default);
-fdescribe('Order service route', () => {
-    it('Expects /order/current_order/:id endpoint to return status code 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/order/current_order/1');
-        expect(response.statusCode).toBe(200);
-    }));
-    it('Expects /order/completed_orders/:id endpoint to return status code 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/order/completed_orders/19');
-        expect(response.statusCode).toBe(200);
-    }));
+exports.idAuth = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const config_1 = __importDefault(require("../config"));
+const { jwtSecret } = config_1.default;
+const idAuth = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const authorizationHeader = req.headers.authorization;
+        const token = authorizationHeader === null || authorizationHeader === void 0 ? void 0 : authorizationHeader.split(' ')[1];
+        const decodedToken = jsonwebtoken_1.default.verify(token, jwtSecret);
+        const userId = parseInt(req.params.id);
+        // @ts-ignore
+        if (userId !== decodedToken.userId) {
+            res.status(400).json('UserId does not match');
+        }
+        else {
+            next();
+        }
+    }
+    catch (error) {
+        throw new Error(`Un-authorized: ${error}`);
+    }
 });
+exports.idAuth = idAuth;
