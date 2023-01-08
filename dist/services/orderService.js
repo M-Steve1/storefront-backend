@@ -58,5 +58,26 @@ class OrderService {
             }
         });
     }
+    isProductInCart(product_id, order_id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            // Checks if a product already exist in an order.
+            try {
+                const sql = 'SELECT * FROM order_products WHERE order_id=($1) AND product_id=($2)';
+                const conn = yield database_1.default.connect();
+                const result = yield database_1.default.query(sql, [order_id, product_id]);
+                conn.release();
+                const product = result.rows[0];
+                if (product === undefined) {
+                    return false;
+                }
+                else {
+                    return true;
+                }
+            }
+            catch (error) {
+                throw new Error(`Something went wrong ${error}`);
+            }
+        });
+    }
 }
 exports.OrderService = OrderService;

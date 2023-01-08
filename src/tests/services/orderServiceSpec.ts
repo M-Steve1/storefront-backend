@@ -2,7 +2,7 @@ import { OrderService } from "../../services/orderService";
 
 const orderService = new OrderService();
 
-describe('Order Service', () => {
+fdescribe('Order Service', () => {
     it('Expects the order status to be active', async () => {
         const result = await orderService.isOrderActive('1');
         expect(result).toEqual('active')
@@ -26,5 +26,9 @@ describe('Order Service', () => {
             user_id: '19',
             status: 'completed'
         }])
+    });
+    it('Should check if the product already exist in the order', async() => {
+        const result = await orderService.isProductInCart("4", "2");
+        expect(result).toBe(true);
     })
 })

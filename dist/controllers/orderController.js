@@ -11,7 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.addProduct = exports.create = void 0;
 const order_1 = require("../models/order");
+const orderService_1 = require("../services/orderService");
 const orderStore = new order_1.OrderStore();
+const orderService = new orderService_1.OrderService();
 const create = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { product_id, product_quantity, user_id, status } = req.body;
@@ -33,8 +35,14 @@ const addProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const order_id = req.params.id;
         const { quantity, product_id } = req.body;
-        const addedProduct = yield orderStore.addProduct(quantity, product_id, order_id);
-        res.status(200).json(addedProduct);
+        const productInCart = yield orderService.isProductInCart(product_id, order_id);
+        if (productInCart) {
+            res.status(400).json('This product already exist in this order');
+        }
+        else {
+            const addedProduct = yield orderStore.addProduct(quantity, product_id, order_id);
+            res.status(200).json(addedProduct);
+        }
     }
     catch (error) {
         throw new Error(`Cannot add product to the order ${error}`);
