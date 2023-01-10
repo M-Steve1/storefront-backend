@@ -8,7 +8,7 @@ testing done with jasmine.
 
 After cloning the repository run the command below
 
-`   $ npm install                     `
+`$ npm install`
 
 ## Usage
 
@@ -101,28 +101,35 @@ After cloning the repository run the command below
 
 ## Data Shapes
 
-#### Product
+#### Products
 
-- id
-- name
-- price
-- category
+- id SERIAL PRIMARY KEY
+- name VARCHAR(200)
+- price integer
+- category VARCHAR(100)
 
-#### User
+#### Users
 
-- id
-- first_name
-- last_name
-- user_name
-- password
+- id SERIAL PRIMARY KEY
+- first_name VARCHAR(150)
+- last_name VARCHAR(150)
+- user_name VARCHAR(150)
+- password VARCHAR(200)
 
 #### Orders
 
-- id
-- product_id
-- product_quantity
-- user_id
-- status
+- id SERIAL PRIMARY KEY
+- product_id bigint REFERENCES products(id)
+- product_quantity integer
+- user_id bigint REFERENCES users(id)
+- status VARCHAR(50)
+
+#### order_products
+
+- id SERIAL PRIMARY KEY
+- quantity integer
+- product_id bigint REFERENCES products(id)
+- order_id bigint REFERENCES orders(id)
 
 #### Formatting
 
