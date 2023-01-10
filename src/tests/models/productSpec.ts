@@ -2,6 +2,11 @@ import { ProductStore } from '../../models/product';
 
 const productStore = new ProductStore();
 
+// Note: Populate your database tables with data to use for testing.
+// Make sure to setup/edit the specs with the data before running it.
+// Using the specs below without editing will cause test to fail because
+// they were setup base on the data contained in my database.
+
 describe('Product model', () => {
   it('Should have an index method', () => {
     expect(productStore.index).toBeDefined();

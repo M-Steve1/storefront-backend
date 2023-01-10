@@ -1,5 +1,10 @@
 import { OrderStore } from '../../models/order';
 
+// Note: Populate your database tables with data to use for testing.
+// Make sure to setup/edit the specs with the data before running it.
+// Using the specs below without editing will cause test to fail because
+// they were setup base of the data contained in my database.
+
 const orderStore = new OrderStore();
 
 describe('Order model', () => {
