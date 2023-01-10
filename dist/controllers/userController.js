@@ -40,7 +40,7 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const { first_name, last_name, user_name, password } = req.body;
         const isTaken = yield userService.isUserNameTaken(user_name);
         if (isTaken) {
-            throw new Error("Username is taken, choose another");
+            throw new Error('Username is taken, choose another');
         }
         else {
             const user = {

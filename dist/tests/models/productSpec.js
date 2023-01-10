@@ -26,25 +26,25 @@ describe('Product model', () => {
         expect(result).toEqual([]);
     }));
     it('Should return the specified(id) product', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield productStore.show("4");
+        const result = yield productStore.show('4');
         expect(result).toEqual({
             id: 4,
-            name: "PS5",
+            name: 'PS5',
             price: 400000,
-            category: "Games"
+            category: 'Games'
         });
     }));
     it('Should create a product', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield productStore.create({
-            name: "PS5",
+            name: 'PS5',
             price: 400000,
-            category: "Games"
+            category: 'Games'
         });
         expect(result).toEqual({
             id: 4,
-            name: "PS5",
+            name: 'PS5',
             price: 400000,
-            category: "Games"
+            category: 'Games'
         });
     }));
 });

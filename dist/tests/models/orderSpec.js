@@ -20,26 +20,26 @@ describe('Order model', () => {
     });
     it('Should create a new order', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield orderStore.create({
-            product_id: "7",
+            product_id: '7',
             product_quantity: 1,
-            user_id: "19",
-            status: "completed"
+            user_id: '19',
+            status: 'completed'
         });
         expect(result).toEqual({
             id: 4,
-            product_id: "7",
+            product_id: '7',
             product_quantity: 1,
-            user_id: "19",
-            status: "completed"
+            user_id: '19',
+            status: 'completed'
         });
     }));
     it('Should add a product to an active order', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield orderStore.addProduct(3, "7", "1");
+        const result = yield orderStore.addProduct(3, '7', '1');
         expect(result).toEqual({
             id: 5,
             quantity: 3,
-            product_id: "7",
-            order_id: "1"
+            product_id: '7',
+            order_id: '1'
         });
     }));
 });

@@ -22,7 +22,12 @@ class OrderStore {
             try {
                 const sql = 'INSERT INTO orders(product_id, product_quantity, user_id, status) VALUES($1, $2, $3, $4) RETURNING *';
                 const conn = yield database_1.default.connect();
-                const result = yield conn.query(sql, [o.product_id, o.product_quantity, o.user_id, o.status.toLowerCase()]);
+                const result = yield conn.query(sql, [
+                    o.product_id,
+                    o.product_quantity,
+                    o.user_id,
+                    o.status.toLowerCase()
+                ]);
                 conn.release();
                 return result.rows[0];
             }

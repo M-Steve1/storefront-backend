@@ -28,16 +28,18 @@ fdescribe('Order Service', () => {
     }));
     it('Should return all the orders completed by the specified(id) user', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield orderService.userCompletedOrders('19');
-        expect(result).toEqual([{
+        expect(result).toEqual([
+            {
                 id: 4,
                 product_id: '7',
                 product_quantity: 1,
                 user_id: '19',
                 status: 'completed'
-            }]);
+            }
+        ]);
     }));
     it('Should check if the product already exist in the order', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield orderService.isProductInCart("4", "2");
+        const result = yield orderService.isProductInCart('4', '2');
         expect(result).toBe(true);
     }));
 });

@@ -49,7 +49,11 @@ class ProductStore {
                 const sql = 'INSERT INTO products(name, price, category) VALUES($1, $2, $3) RETURNING *';
                 const conn = yield database_1.default.connect();
                 // product name and category to lowercase to allow naming consistency
-                const result = yield conn.query(sql, [p.name.toLowerCase(), p.price, p.category.toLowerCase()]);
+                const result = yield conn.query(sql, [
+                    p.name.toLowerCase(),
+                    p.price,
+                    p.category.toLowerCase()
+                ]);
                 conn.release();
                 return result.rows[0];
             }
@@ -60,4 +64,3 @@ class ProductStore {
     }
 }
 exports.ProductStore = ProductStore;
-;

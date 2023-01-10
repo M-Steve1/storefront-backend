@@ -43,7 +43,9 @@ class UserService {
     createToken(payload) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const token = jsonwebtoken_1.default.sign(payload, jwtSecret, { expiresIn: "1hr" });
+                const token = jsonwebtoken_1.default.sign(payload, jwtSecret, {
+                    expiresIn: '1hr'
+                });
                 return token;
             }
             catch (error) {

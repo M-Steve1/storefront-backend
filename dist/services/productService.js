@@ -32,7 +32,9 @@ class ProductService {
                 for (let i = 0; i < length; i++) {
                     for (let j = 0; j < length; j++) {
                         if (_resultOne[i].product_id === _resultTwo[j].product_id) {
-                            _resultOne[i].most_popular = parseInt(_resultOne[i].most_popular) + parseInt(_resultTwo[j].most_popular);
+                            _resultOne[i].most_popular =
+                                parseInt(_resultOne[i].most_popular) +
+                                    parseInt(_resultTwo[j].most_popular);
                             break;
                         }
                         else {
@@ -41,7 +43,8 @@ class ProductService {
                         }
                     }
                     for (let k = 0; k < length; k++) {
-                        if (_resultTwo[i].product_id !== _resultOne[k].product_id && (k === length - 1)) {
+                        if (_resultTwo[i].product_id !== _resultOne[k].product_id &&
+                            k === length - 1) {
                             // converts to integer before pushing into _resultOne
                             _resultTwo[i].most_popular = parseInt(_resultTwo[i].most_popular);
                             _resultOne.push(_resultTwo[i]);
@@ -52,8 +55,10 @@ class ProductService {
                     }
                 }
                 // sorting in DESC order.
-                _resultOne.sort((a, b) => { return b.most_popular - a.most_popular; });
-                let fiveMostPopularProducts = [];
+                _resultOne.sort((a, b) => {
+                    return b.most_popular - a.most_popular;
+                });
+                const fiveMostPopularProducts = [];
                 for (let i = 0; i < 5; i++) {
                     const sql = 'SELECT name FROM products WHERE id=($1)';
                     const conn = yield database_1.default.connect();

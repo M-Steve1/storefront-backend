@@ -26,47 +26,49 @@ describe('User model', () => {
     });
     it('Create method should add a new user', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.create({
-            first_name: "Modebe",
-            last_name: "Stephen",
-            user_name: "Msteve4",
-            password: "password"
+            first_name: 'Modebe',
+            last_name: 'Stephen',
+            user_name: 'Msteve4',
+            password: 'password'
         });
         expect(result).toEqual({
             id: 21,
-            first_name: "modebe",
-            last_name: "stephen",
-            user_name: "Msteve4",
-            password: "password"
+            first_name: 'modebe',
+            last_name: 'stephen',
+            user_name: 'Msteve4',
+            password: 'password'
         });
     }));
     it('Index method should return the list of all users', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.index();
-        expect(result).toEqual([{
+        expect(result).toEqual([
+            {
                 id: 1,
-                first_name: "Modebe",
-                last_name: "Stephen",
-                user_name: "Msteve1",
-                password: "$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC"
-            }]);
+                first_name: 'Modebe',
+                last_name: 'Stephen',
+                user_name: 'Msteve1',
+                password: '$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC'
+            }
+        ]);
     }));
     it('Show method should return specified(id) user', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield userStore.show("1");
+        const result = yield userStore.show('1');
         expect(result).toEqual({
             id: 1,
-            first_name: "Modebe",
-            last_name: "Stephen",
-            user_name: "Msteve1",
-            password: "$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC"
+            first_name: 'Modebe',
+            last_name: 'Stephen',
+            user_name: 'Msteve1',
+            password: '$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC'
         });
     }));
     it(`Should login the user if the details are correct`, () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield userStore.authenticate("Msteve1", "password");
+        const result = yield userStore.authenticate('Msteve1', 'password');
         expect(result).toEqual({
             id: 1,
-            first_name: "Modebe",
-            last_name: "Stephen",
-            user_name: "Msteve1",
-            password: "$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC"
+            first_name: 'Modebe',
+            last_name: 'Stephen',
+            user_name: 'Msteve1',
+            password: '$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC'
         });
     }));
 });

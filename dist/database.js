@@ -7,7 +7,7 @@ const pg_1 = require("pg");
 const config_1 = __importDefault(require("./config"));
 const { host, envDB, user, password, port, testDB, env } = config_1.default;
 let client;
-if (env === "dev") {
+if (env === 'dev') {
     client = new pg_1.Pool({
         host: host,
         user: user,
@@ -16,7 +16,7 @@ if (env === "dev") {
         port: port
     });
 }
-if (env === "test") {
+if (env === 'test') {
     client = new pg_1.Pool({
         host: host,
         user: user,

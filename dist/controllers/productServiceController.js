@@ -17,7 +17,7 @@ const productsByCategory = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const category = req.params.category;
         const products = yield productService.productsByCategory(category);
         if (products.length === 0) {
-            throw new Error("category does not exist");
+            throw new Error('category does not exist');
         }
         else {
             res.status(200).json(products);

@@ -17,7 +17,7 @@ const userCurrentOrder = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const user_id = req.params.id;
         const currentOrder = yield orderService.userCurrentOrder(user_id);
         if (currentOrder === undefined) {
-            res.status(404).json('You don\'t have any current order');
+            res.status(404).json("You don't have any current order");
         }
         else {
             res.status(200).json(currentOrder);

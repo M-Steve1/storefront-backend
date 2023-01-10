@@ -13,31 +13,31 @@ const productService_1 = require("../../services/productService");
 const productService = new productService_1.ProductService();
 describe('Produce service', () => {
     it('Should return the products under a specific category e.g Games', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield productService.productsByCategory("Games");
+        const result = yield productService.productsByCategory('Games');
         expect(result).toEqual([
             {
                 id: 1,
-                name: "PS4",
+                name: 'PS4',
                 price: 265000,
-                category: "games"
+                category: 'games'
             },
             {
                 id: 2,
-                name: "PS4",
+                name: 'PS4',
                 price: 265000,
-                category: "games"
+                category: 'games'
             },
             {
                 id: 3,
-                name: "PS4",
+                name: 'PS4',
                 price: 400000,
-                category: "games"
+                category: 'games'
             },
             {
                 id: 4,
-                name: "PS5",
+                name: 'PS5',
                 price: 400000,
-                category: "games"
+                category: 'games'
             }
         ]);
     }));
@@ -45,19 +45,19 @@ describe('Produce service', () => {
         const result = yield productService.fiveMostPopularProducts();
         expect(result).toEqual([
             {
-                "name": "samsung z-fold2"
+                name: 'samsung z-fold2'
             },
             {
-                "name": "PS5"
+                name: 'PS5'
             },
             {
-                "name": "t-shirt"
+                name: 't-shirt'
             },
             {
-                "name": "coconut bread"
+                name: 'coconut bread'
             },
             {
-                "name": "iphone xr"
+                name: 'iphone xr'
             }
         ]);
     }));
