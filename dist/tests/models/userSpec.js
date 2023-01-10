@@ -11,6 +11,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const user_1 = require("../../models/user");
 const userStore = new user_1.UserStore();
+// Note: Populate your database tables with data to use for testing.
+// Make sure to setup/edit the specs with the data before running it.
+// Using the specs below without editing will cause test to fail because
+// they were setup base of the data contained in my database.
+// Some of the test will fail because of the hashed password.
+// One way to make the test pass, is to test without password hashing or return user without the password.
 describe('User model', () => {
     it('Should have an index method', () => {
         expect(userStore.index).toBeDefined();

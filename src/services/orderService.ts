@@ -7,9 +7,13 @@ export class OrderService {
       const sql = 'SELECT status FROM orders WHERE id=($1)';
       const conn = await client.connect();
       const result = await conn.query(sql, [order_id]);
-      const orderStatus = result.rows[0].status;
       conn.release();
-      return orderStatus;
+      if (result.rows.length === 0) {
+        return 'Order does not exist';
+      } else {
+        const orderStatus = result.rows[0].status;
+        return orderStatus;
+      }
     } catch (error) {
       throw new Error(`Cannot find order: ${error}`);
     }

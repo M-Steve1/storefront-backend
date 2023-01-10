@@ -10,6 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const order_1 = require("../../models/order");
+// Note: Populate your database tables with data to use for testing.
+// Make sure to setup/edit the specs with the data before running it.
+// Using the specs below without editing will cause test to fail because
+// they were setup base of the data contained in my database.
 const orderStore = new order_1.OrderStore();
 describe('Order model', () => {
     it('Should have a create method', () => {
