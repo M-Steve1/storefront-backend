@@ -15,11 +15,11 @@ export type User = {
 export class UserStore {
   async index(): Promise<User[]> {
     try {
-      const sql = 'SELECT * FROM users';
+      const sql = 'SELECT id, first_name, last_name, user_name FROM users';
       const conn = await client.connect();
       const result = await conn.query(sql);
       conn.release();
-      return result.rows;
+      return result.rows
     } catch (error) {
       throw new Error(`Cannot fetch users ${error}`);
     }
@@ -42,7 +42,9 @@ export class UserStore {
         hashedPassword
       ]);
       conn.release();
-      return result.rows[0];
+      const user = result.rows[0];
+      delete user.password;
+      return user;
     } catch (error) {
       throw new Error(`Cannot create user ${error}`);
     }
@@ -50,11 +52,13 @@ export class UserStore {
 
   async show(id: string): Promise<User> {
     try {
-      const sql = 'SELECT * FROM users WHERE id=($1)';
+      const sql = 'SELECT id, first_name, last_name, user_name FROM users WHERE id=($1)';
       const conn = await client.connect();
       const result = await conn.query(sql, [id]);
       conn.release();
-      return result.rows[0];
+      const user = result.rows[0];
+      delete user.password;
+      return user;
     } catch (error) {
       throw new Error(`Cannot find user ${error}`);
     }
@@ -74,7 +78,8 @@ export class UserStore {
           user.password
         );
         if (correctPassword) {
-          return user;
+          delete user.password
+          return user
         } else {
           throw new Error('Cannot login');
         }

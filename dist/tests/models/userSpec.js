@@ -17,7 +17,7 @@ const userStore = new user_1.UserStore();
 // they were setup base of the data contained in my database.
 // Some of the test will fail because of the hashed password.
 // One way to make the test pass, is to test without password hashing or return user without the password.
-describe('User model', () => {
+fdescribe('User model', () => {
     it('Should have an index method', () => {
         expect(userStore.index).toBeDefined();
     });
@@ -30,51 +30,51 @@ describe('User model', () => {
     it('Should have an authenticate method', () => {
         expect(userStore.authenticate).toBeDefined();
     });
-    it('Create method should add a new user', () => __awaiter(void 0, void 0, void 0, function* () {
+    beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.create({
-            first_name: 'Modebe',
-            last_name: 'Stephen',
-            user_name: 'Msteve4',
-            password: 'password'
-        });
-        expect(result).toEqual({
-            id: 21,
             first_name: 'modebe',
             last_name: 'stephen',
-            user_name: 'Msteve4',
+            user_name: 'Msteve1',
             password: 'password'
+        });
+        // @ts-ignore
+        expect(result).toEqual({
+            id: 1,
+            first_name: 'modebe',
+            last_name: 'stephen',
+            user_name: 'Msteve1'
         });
     }));
     it('Index method should return the list of all users', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.index();
         expect(result).toEqual([
+            // @ts-ignore
             {
                 id: 1,
-                first_name: 'Modebe',
-                last_name: 'Stephen',
-                user_name: 'Msteve1',
-                password: '$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC'
+                first_name: 'modebe',
+                last_name: 'stephen',
+                user_name: 'Msteve1'
             }
         ]);
     }));
     it('Show method should return specified(id) user', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.show('1');
+        // @ts-ignore
         expect(result).toEqual({
             id: 1,
-            first_name: 'Modebe',
-            last_name: 'Stephen',
-            user_name: 'Msteve1',
-            password: '$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC'
+            first_name: 'modebe',
+            last_name: 'stephen',
+            user_name: 'Msteve1'
         });
     }));
     it(`Should login the user if the details are correct`, () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield userStore.authenticate('Msteve1', 'password');
+        // @ts-ignore
         expect(result).toEqual({
             id: 1,
-            first_name: 'Modebe',
-            last_name: 'Stephen',
+            first_name: 'modebe',
+            last_name: 'stephen',
             user_name: 'Msteve1',
-            password: '$2b$10$J5exkpdC7cQOFhMEJ.NvjO38krXwUCeJ60g/XOnHCohiBlJjd/tQC'
         });
     }));
 });

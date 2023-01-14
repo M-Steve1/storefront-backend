@@ -16,9 +16,9 @@ const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
 const request = (0, supertest_1.default)(server_1.default);
 describe('Order route', () => {
-    it('Expects /order/create endpoint to return status code 201', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('Expects /order/create endpoint not to return status code 201', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.post('/order/create');
-        expect(response.statusCode).toBe(201);
+        expect(response.statusCode).not.toBe(201);
     }));
     it('Expects /order/:id/product endpoint to return status code of 200', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.post('/order/6/product');

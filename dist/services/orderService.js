@@ -21,11 +21,9 @@ class OrderService {
                 const sql = 'SELECT status FROM orders WHERE id=($1)';
                 const conn = yield database_1.default.connect();
                 const result = yield conn.query(sql, [order_id]);
-                console.log(typeof (result), result);
                 conn.release();
                 if (result.rows.length === 0) {
-                    console.log("ok");
-                    return "Order does not exist";
+                    return 'Order does not exist';
                 }
                 else {
                     const orderStatus = result.rows[0].status;

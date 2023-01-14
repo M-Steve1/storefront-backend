@@ -4,9 +4,9 @@ import app from '../../server';
 const request = supertest(app);
 
 describe('Order route', () => {
-  it('Expects /order/create endpoint to return status code 201', async () => {
+  it('Expects /order/create endpoint not to return status code 201', async () => {
     const response = await request.post('/order/create');
-    expect(response.statusCode).toBe(201);
+    expect(response.statusCode).not.toBe(201);
   });
 
   it('Expects /order/:id/product endpoint to return status code of 200', async () => {

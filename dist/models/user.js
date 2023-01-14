@@ -21,7 +21,7 @@ class UserStore {
     index() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const sql = 'SELECT * FROM users';
+                const sql = 'SELECT id, first_name, last_name, user_name FROM users';
                 const conn = yield database_1.default.connect();
                 const result = yield conn.query(sql);
                 conn.release();
@@ -46,7 +46,9 @@ class UserStore {
                     hashedPassword
                 ]);
                 conn.release();
-                return result.rows[0];
+                const user = result.rows[0];
+                delete user.password;
+                return user;
             }
             catch (error) {
                 throw new Error(`Cannot create user ${error}`);
@@ -56,11 +58,13 @@ class UserStore {
     show(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const sql = 'SELECT * FROM users WHERE id=($1)';
+                const sql = 'SELECT id, first_name, last_name, user_name FROM users WHERE id=($1)';
                 const conn = yield database_1.default.connect();
                 const result = yield conn.query(sql, [id]);
                 conn.release();
-                return result.rows[0];
+                const user = result.rows[0];
+                delete user.password;
+                return user;
             }
             catch (error) {
                 throw new Error(`Cannot find user ${error}`);
@@ -78,6 +82,7 @@ class UserStore {
                     const user = result.rows[0];
                     const correctPassword = yield bcrypt_1.default.compare(password + pepper, user.password);
                     if (correctPassword) {
+                        delete user.password;
                         return user;
                     }
                     else {

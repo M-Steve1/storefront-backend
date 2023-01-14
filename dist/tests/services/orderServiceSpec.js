@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const orderService_1 = require("../../services/orderService");
 const orderService = new orderService_1.OrderService();
-fdescribe('Order Service', () => {
-    it('Expects the order status to be active', () => __awaiter(void 0, void 0, void 0, function* () {
+describe('Order Service', () => {
+    it('Expects the order status to not be active', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield orderService.isOrderActive('1');
         expect(result).not.toEqual('active');
     }));
