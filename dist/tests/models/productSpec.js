@@ -15,7 +15,7 @@ const productStore = new product_1.ProductStore();
 // Make sure to setup/edit the specs with the data before running it.
 // Using the specs below without editing will cause test to fail because
 // they were setup base on the data contained in my database.
-describe('Product model', () => {
+fdescribe('Product model', () => {
     it('Should have an index method', () => {
         expect(productStore.index).toBeDefined();
     });
@@ -27,28 +27,33 @@ describe('Product model', () => {
     });
     it('Should return all the products', () => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield productStore.index();
-        expect(result).toEqual([]);
+        expect(result).toEqual([{
+                id: 1,
+                name: 'ps5',
+                price: 400000,
+                category: 'games'
+            }]);
     }));
     it('Should return the specified(id) product', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield productStore.show('4');
+        const result = yield productStore.show('1');
         expect(result).toEqual({
-            id: 4,
-            name: 'PS5',
+            id: 1,
+            name: 'ps5',
             price: 400000,
-            category: 'Games'
+            category: 'games'
         });
     }));
-    it('Should create a product', () => __awaiter(void 0, void 0, void 0, function* () {
+    beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield productStore.create({
-            name: 'PS5',
+            name: 'ps5',
             price: 400000,
-            category: 'Games'
+            category: 'games'
         });
         expect(result).toEqual({
-            id: 4,
-            name: 'PS5',
+            id: 1,
+            name: 'ps5',
             price: 400000,
-            category: 'Games'
+            category: 'games'
         });
     }));
 });

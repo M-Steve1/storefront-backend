@@ -22,27 +22,27 @@ describe('Order model', () => {
     it('Should have a addProduct method', () => {
         expect(orderStore.addProduct).toBeDefined();
     });
-    it('Should create a new order', () => __awaiter(void 0, void 0, void 0, function* () {
+    beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
         const result = yield orderStore.create({
-            product_id: '7',
-            product_quantity: 1,
-            user_id: '19',
-            status: 'completed'
+            product_id: '1',
+            product_quantity: 3,
+            user_id: '1',
+            status: 'active'
         });
         expect(result).toEqual({
-            id: 4,
-            product_id: '7',
-            product_quantity: 1,
-            user_id: '19',
-            status: 'completed'
+            id: 1,
+            product_id: '1',
+            product_quantity: 3,
+            user_id: '1',
+            status: 'active'
         });
     }));
     it('Should add a product to an active order', () => __awaiter(void 0, void 0, void 0, function* () {
-        const result = yield orderStore.addProduct(3, '7', '1');
+        const result = yield orderStore.addProduct(3, '1', '1');
         expect(result).toEqual({
-            id: 5,
+            id: 1,
             quantity: 3,
-            product_id: '7',
+            product_id: '1',
             order_id: '1'
         });
     }));

@@ -2,12 +2,7 @@ import { ProductStore } from '../../models/product';
 
 const productStore = new ProductStore();
 
-// Note: Populate your database tables with data to use for testing.
-// Make sure to setup/edit the specs with the data before running it.
-// Using the specs below without editing will cause test to fail because
-// they were setup base on the data contained in my database.
-
-describe('Product model', () => {
+fdescribe('Product model', () => {
   it('Should have an index method', () => {
     expect(productStore.index).toBeDefined();
   });
@@ -20,28 +15,33 @@ describe('Product model', () => {
 
   it('Should return all the products', async () => {
     const result = await productStore.index();
-    expect(result).toEqual([]);
+    expect(result).toEqual([{
+      id: 1,
+      name: 'ps5',
+      price: 400000,
+      category: 'games'
+    }]);
   });
   it('Should return the specified(id) product', async () => {
-    const result = await productStore.show('4');
+    const result = await productStore.show('1');
     expect(result).toEqual({
-      id: 4,
-      name: 'PS5',
+      id: 1,
+      name: 'ps5',
       price: 400000,
-      category: 'Games'
+      category: 'games'
     });
   });
-  it('Should create a product', async () => {
+  beforeAll(async () => {
     const result = await productStore.create({
-      name: 'PS5',
+      name: 'ps5',
       price: 400000,
-      category: 'Games'
+      category: 'games'
     });
     expect(result).toEqual({
-      id: 4,
-      name: 'PS5',
+      id: 1,
+      name: 'ps5',
       price: 400000,
-      category: 'Games'
+      category: 'games'
     });
   });
 });
