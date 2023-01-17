@@ -72,7 +72,7 @@ After cloning the repository run the command below
 ```
  "scripts": {
   "build": "npx tsc",
-  "test": "db-migrate --env test up && npm run build && jasmine"
+  "test": "set ENV=test && db-migrate --env test up && npm run build && jasmine"
   },
 ```
 
