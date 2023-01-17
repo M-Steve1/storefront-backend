@@ -15,12 +15,14 @@ describe('Product model', () => {
 
   it('Should return all the products', async () => {
     const result = await productStore.index();
-    expect(result).toEqual([{
-      id: 1,
-      name: 'ps5',
-      price: 400000,
-      category: 'games'
-    }]);
+    expect(result).toEqual([
+      {
+        id: 1,
+        name: 'ps5',
+        price: 400000,
+        category: 'games'
+      }
+    ]);
   });
   it('Should return the specified(id) product', async () => {
     const result = await productStore.show('1');

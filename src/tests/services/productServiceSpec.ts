@@ -11,8 +11,8 @@ describe('Produce service', () => {
         name: 'ps5',
         price: 400000,
         category: 'games'
-      },
-     ]);
+      }
+    ]);
   });
 
   it('Should return the five most popular products', async () => {

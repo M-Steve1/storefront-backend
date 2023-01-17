@@ -9,6 +9,6 @@ describe('User service', () => {
   });
   it('Should return a token and not an empty string', async () => {
     const token = await userService.createToken({ userId: '1' });
-    expect(token).not.toEqual(" ");
+    expect(token).toBeInstanceOf(String);
   });
 });

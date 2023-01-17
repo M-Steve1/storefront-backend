@@ -16,26 +16,26 @@ describe('User model', () => {
     expect(userStore.authenticate).toBeDefined();
   });
 
-  beforeAll( async () => {
-      const result = await userStore.create({
-        first_name: 'modebe',
-        last_name: 'stephen',
-        user_name: 'Msteve1',
-        password: 'password'
-      });
-      // @ts-ignore
-      expect(result).toEqual({
-        id: 1,
-        first_name: 'modebe',
-        last_name: 'stephen',
-        user_name: 'Msteve1'
-      });
+  beforeAll(async () => {
+    const result = await userStore.create({
+      first_name: 'modebe',
+      last_name: 'stephen',
+      user_name: 'Msteve1',
+      password: 'password'
     });
+    // @ts-ignore
+    expect(result).toEqual({
+      id: 1,
+      first_name: 'modebe',
+      last_name: 'stephen',
+      user_name: 'Msteve1'
+    });
+  });
 
   it('Index method should return the list of all users', async () => {
     const result = await userStore.index();
     expect(result).toEqual([
-       // @ts-ignore
+      // @ts-ignore
       {
         id: 1,
         first_name: 'modebe',
@@ -47,7 +47,7 @@ describe('User model', () => {
 
   it('Show method should return specified(id) user', async () => {
     const result = await userStore.show('1');
-       // @ts-ignore
+    // @ts-ignore
     expect(result).toEqual({
       id: 1,
       first_name: 'modebe',
@@ -58,12 +58,12 @@ describe('User model', () => {
 
   it(`Should login the user if the details are correct`, async () => {
     const result = await userStore.authenticate('Msteve1', 'password');
-       // @ts-ignore
+    // @ts-ignore
     expect(result).toEqual({
       id: 1,
       first_name: 'modebe',
       last_name: 'stephen',
-      user_name: 'Msteve1',
+      user_name: 'Msteve1'
     });
   });
 });

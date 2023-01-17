@@ -19,7 +19,7 @@ export class UserStore {
       const conn = await client.connect();
       const result = await conn.query(sql);
       conn.release();
-      return result.rows
+      return result.rows;
     } catch (error) {
       throw new Error(`Cannot fetch users ${error}`);
     }
@@ -52,7 +52,8 @@ export class UserStore {
 
   async show(id: string): Promise<User> {
     try {
-      const sql = 'SELECT id, first_name, last_name, user_name FROM users WHERE id=($1)';
+      const sql =
+        'SELECT id, first_name, last_name, user_name FROM users WHERE id=($1)';
       const conn = await client.connect();
       const result = await conn.query(sql, [id]);
       conn.release();
@@ -78,8 +79,8 @@ export class UserStore {
           user.password
         );
         if (correctPassword) {
-          delete user.password
-          return user
+          delete user.password;
+          return user;
         } else {
           throw new Error('Cannot login');
         }
