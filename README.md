@@ -66,20 +66,13 @@ After cloning the repository run the command below
 - Edit necessary spec file(s) and variables for testing
 - Create table `db-migrate --env test up`
 - Drop table `db-migrate --env test down`
-  **Note**
-
-- When running test with jasmine, populate your database tables with data to use for testing.
-- Make sure to setup/edit the specs with the data before running it.
-- Using the specs in the source code without editing will cause test to fail.
-- Routes that requires token or functions that sends/returns a token will fail jasmine test without the token, a way around this is to remove the token authentication while testing.
-- Also routes or functions that sends/returns user with the hashed password will fail jamine test, a way around this it to make the password plain while testing the routes/functions
 
 - Test scripts:
 
 ```
  "scripts": {
-    "build": "npx tsc",
-    "test": "npm run build && jasmine"
+  "build": "npx tsc",
+  "test": "db-migrate --env test up && npm run build && jasmine"
   },
 ```
 
