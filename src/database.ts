@@ -13,9 +13,7 @@ if (env === 'dev') {
     password: password,
     port: port
   });
-}
-
-if (env === 'test') {
+} else {
   client = new Pool({
     host: host,
     user: user,
