@@ -1,4 +1,3 @@
-import { clear } from 'console';
 import { UserStore } from '../../models/user';
 
 const userStore = new UserStore();
