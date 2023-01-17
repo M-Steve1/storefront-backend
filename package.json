@@ -8,7 +8,8 @@
     "lint": "eslint src/**/*.ts",
     "start": "nodemon src/server.ts",
     "build": "npx tsc",
-    "test": "npm run build && jasmine"
+    "test": "npm run build && jasmine",
+    "down": "db-migrate down && db-migrate down && db-migrate down && db-migrate down"
   },
   "author": "Modebe Stephen",
   "license": "ISC",

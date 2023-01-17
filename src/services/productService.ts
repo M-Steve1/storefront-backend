@@ -47,7 +47,7 @@ export class ProductService {
         return b.most_popular - a.most_popular;
       });
       const fiveMostPopularProducts: object[] = [];
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < length; i++) {
         const sql = 'SELECT name FROM products WHERE id=($1)';
         const conn = await client.connect();
         const result = await conn.query(sql, [_resultOne[i].product_id]);
