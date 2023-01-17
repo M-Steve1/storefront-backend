@@ -14,7 +14,7 @@ const userService = new userService_1.UserService();
 fdescribe('User service', () => {
     it('Should return true if the user name is taken', () => __awaiter(void 0, void 0, void 0, function* () {
         const isTaken = yield userService.isUserNameTaken('Msteve1');
-        expect(isTaken).toBe(false);
+        expect(isTaken).toBe(true);
     }));
     it('Should return a token and not an empty string', () => __awaiter(void 0, void 0, void 0, function* () {
         const token = yield userService.createToken({ userId: '1' });

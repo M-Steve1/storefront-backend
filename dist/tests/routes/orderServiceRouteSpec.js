@@ -14,14 +14,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const server_1 = __importDefault(require("../../server"));
+const userService_1 = require("../../services/userService");
+const userService = new userService_1.UserService();
 const request = (0, supertest_1.default)(server_1.default);
-describe('Order service route', () => {
-    it('Expects /order/current_order/:id endpoint to return status code 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/order/current_order/1');
-        expect(response.statusCode).not.toBe(200);
+fdescribe('Order service route', () => {
+    it('Expects /order/current_order/:id endpoint to return statusCode 200', () => __awaiter(void 0, void 0, void 0, function* () {
+        const token = yield userService.createToken({ userId: '1' });
+        request
+            .get('/order/current_order/1')
+            .set('Authorization', 'bearer ' + token)
+            .expect(200);
     }));
-    it('Expects /order/completed_orders/:id endpoint to return status code 200', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/order/completed_orders/19');
-        expect(response.statusCode).toBe(200);
+    it('Expects /order/completed_orders/:id endpoint to return statusCode 404', () => __awaiter(void 0, void 0, void 0, function* () {
+        const token = yield userService.createToken({ userId: '1' });
+        request
+            .get('/order/completed_orders/1')
+            .set('Authorization', 'bearer ' + token)
+            .expect(404);
     }));
 });

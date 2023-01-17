@@ -7,9 +7,6 @@ import {
 const productServiceRouter = express.Router();
 
 productServiceRouter.get('/category/:category', productsByCategory);
-productServiceRouter.get(
-  '/five_most_popular_products',
-  fiveMostPopularProducts
-);
+productServiceRouter.get('/five_most_popular_products', fiveMostPopularProducts);
 
 export default productServiceRouter;

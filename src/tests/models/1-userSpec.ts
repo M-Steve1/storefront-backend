@@ -2,7 +2,7 @@ import { UserStore } from '../../models/user';
 
 const userStore = new UserStore();
 
-fdescribe('User model', () => {
+describe('User model', () => {
   it('Should have an index method', () => {
     expect(userStore.index).toBeDefined();
   });

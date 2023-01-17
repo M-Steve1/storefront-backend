@@ -2,7 +2,7 @@ import { OrderStore } from '../../models/order';
 
 const orderStore = new OrderStore();
 
-fdescribe('Order model', () => {
+describe('Order model', () => {
   it('Should have a create method', () => {
     expect(orderStore.create).toBeDefined();
   });

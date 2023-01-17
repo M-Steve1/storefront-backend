@@ -2,7 +2,7 @@ import { ProductService } from '../../services/productService';
 
 const productService = new ProductService();
 
-fdescribe('Produce service', () => {
+describe('Produce service', () => {
   it('Should return the products under a specific category e.g games', async () => {
     const result = await productService.productsByCategory('games');
     expect(result).toEqual([

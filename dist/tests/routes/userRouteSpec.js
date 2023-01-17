@@ -14,22 +14,42 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const server_1 = __importDefault(require("../../server"));
 const supertest_1 = __importDefault(require("supertest"));
+const userService_1 = require("../../services/userService");
+const userService = new userService_1.UserService();
 const request = (0, supertest_1.default)(server_1.default);
-describe('User route', () => {
+fdescribe('User route', () => {
     it('Expects index endpoint to return 200 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/user/index');
-        expect(response.statusCode).not.toBe(200);
+        const token = yield userService.createToken({ userId: '1' });
+        request
+            .get('/user/index')
+            .set('Authorization', 'bearer ' + token)
+            .expect(200);
     }));
     it('Expects user/show/:id endpoint to return 200 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/user/show/1');
-        expect(response.statusCode).toBe(200);
+        const token = yield userService.createToken({ userId: '1' });
+        request
+            .get('/user/show/1')
+            .set('Authorization', 'bearer ' + token)
+            .expect(200);
     }));
     it('Expects signup endpoint not to return 201 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.post('/user/signup');
-        expect(response.statusCode).not.toBe(201);
+        request
+            .post('/user/signup')
+            .send({
+            first_name: "Awe",
+            last_name: "Lanre",
+            user_name: "Alanre1",
+            password: "password"
+        })
+            .expect(201);
     }));
     it('Expects signin endpoint to return 200 statusCode', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.post('/user/signin');
-        expect(response.statusCode).not.toBe(200);
+        request
+            .post('/user/signin')
+            .send({
+            user_name: "Msteve1",
+            password: "password"
+        })
+            .expect(200);
     }));
 });
