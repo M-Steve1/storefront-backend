@@ -44,10 +44,8 @@ After cloning the repository run the command below
 
 #### Development
 
-- To connect to the development database.
-- Change `ENV = test` to `ENV = dev` in '.env' file
-- Setup database for development and make sure it tallys with the one on source code
-- Edit necessary spec file(s) and variables for development
+- Connect to the development database.
+- Setup database for development and make sure it tally with the one on source code
 - Create table `db-migrate up`
 - Drop table `db-migrate down`
 - start script:
@@ -60,12 +58,7 @@ After cloning the repository run the command below
 
 #### Testing
 
-- To connect to the testing database.
-- Change `ENV = dev` to `ENV = test` in '.env' file
-- Setup database for testing and make sure it tallys with the one on source code
-- Edit necessary spec file(s) and variables for testing
-- Create table `db-migrate --env test up`
-- Drop table `db-migrate --env test down`
+- Setup database for testing and make sure it tally with the one on source code
 
 - Test scripts:
 
@@ -75,6 +68,8 @@ After cloning the repository run the command below
   "test": "set ENV=test && db-migrate --env test up && npm run build && jasmine"
   },
 ```
+
+- Drop table `db-migrate --env test down`
 
 ## API Endpoints
 
